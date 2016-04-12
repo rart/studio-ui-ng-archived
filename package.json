@@ -1,0 +1,36 @@
+{
+  "name": "studio-3-ui",
+  "description": "Initial studio 3 UI app playground.",
+  "homepage": "http://craftercms.org",
+  "repository": { "type": "git", "url": "git+https://github.com/rart/studio-3-ui.git" },
+  "version": "0.0.1",
+  "license": "GNU v3",
+  "author": "Roy Art <royart@me.com>",
+  "scripts": {
+    "start": "concurrently \"npm run sass\" \"npm run tsc:w\" \"npm run sass:w\" \"npm run lite\"",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "sass": "node-sass --output www/css/ src/components/main.scss",
+    "sass:w": "node-sass --watch src/components/main.scss --output www/css/",
+    "lite": "lite-server",
+    "typings": "typings",
+    "docker-build": "docker build -t studio3-ui .",
+    "docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 studio3-ui",
+    "postinstall": "typings install"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-beta.13",
+    "systemjs": "0.19.25",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.6",
+    "bootstrap": "4.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.1.0",
+    "typescript": "^1.8.9",
+    "typings":"^0.7.11"
+  }
+}

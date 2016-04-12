@@ -1,0 +1,12 @@
+{
+  "logLevel": "debug",
+  "logPrefix": "Studio",
+  "browser": "google chrome",
+  "server": {
+    "baseDir": "www",
+    "routes": {
+      "/node_modules": "node_modules",
+      "/components": "src/components"
+    }
+  }
+}
