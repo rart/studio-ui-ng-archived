@@ -1,23 +1,7 @@
 
-$brand-primary:             #304269; // #283277;
-$brand-success:             #468966;
-$brand-info:                #3498DB;
-$brand-warning:             #F26101;
-$brand-danger:              #DC3522;
+@import "settings";
 
-$enable-flex:               true;
-$enable-shadows:            true;
-$enable-gradients:          true;
-$enable-transitions:        true;
-$enable-hover-media-query:  true;
-
-$body-bg: #f8f8f8;
-$font-family-sans-serif: 'PT Sans', sans-serif;
-
-$font-size-root: 14px;
-
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
-
+// Bootstrap
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/normalize";
@@ -47,17 +31,15 @@ $font-size-root: 14px;
 @import "../../node_modules/bootstrap/scss/list-group";
 @import "../../node_modules/bootstrap/scss/responsive-embed";
 @import "../../node_modules/bootstrap/scss/close";
-
-// Utility classes
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "../../node_modules/bootstrap/scss/utilities-background";
 @import "../../node_modules/bootstrap/scss/utilities-spacing";
 @import "../../node_modules/bootstrap/scss/utilities-responsive";
 
+// Google Font(s)
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
 
-html, body {
-
-}
-
-@import "app/app";
-@import "home/home";
+// Studio Components
+@import "../components/app/app";
+@import "../components/home/home";
+@import "../components/preview/preview";
