@@ -1,16 +1,20 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Input, forwardRef} from 'angular2/core';
 import {StudioUtils} from "../../classes/studio-utils";
 import {ContentService} from "../../services/content-service";
 import {ContentItem} from "../../classes/content-item";
 import {ContentTypes} from "../../classes/content-types";
+import {UnlessDirective} from "../../directives/unless-directive";
+import {TreeCmp} from "../../components/tree/tree";
 
 @Component({
     selector: 'sitemap',
     providers: [ContentService],
+    directives: [UnlessDirective, forwardRef(() => TreeCmp)],
     templateUrl: StudioUtils.getComponentTemplateUrl('sitemap')
 }) export class SitemapCmp implements OnInit {
 
-    public items: Array<ContentItem>;
+    items: Array<ContentItem>;
+    enableSelection:boolean = false;
 
     constructor(private _contentService: ContentService) {}
 
@@ -21,6 +25,8 @@ import {ContentTypes} from "../../classes/content-types";
 
     addPage() {}
 
-    setBulk() {}
+    setBulk(bulk:boolean) {
+        this.enableSelection = bulk;
+    }
 
 }

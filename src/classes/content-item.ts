@@ -8,7 +8,7 @@ export class ContentItem {
     url: string;
     path: string;
     type: ContentTypes;
-    children: Array<ContentItem>;
+    _children: Array<ContentItem> = [];
 
     constructor ({id, label, uri, url, path, type, children}) {
         this.id = id;
@@ -21,7 +21,18 @@ export class ContentItem {
     }
 
     isLeaf() {
-        return !(this.children) && (this.children.length === 0);
+        return !(this._children) || (this._children.length === 0);
+    }
+
+    set children(children) {
+        this._children = children && children.map((child) => {
+            if (child instanceof ContentItem) return child;
+            else return new ContentItem(child);
+        });
+    }
+
+    get children() {
+        return this._children;
     }
 
 }

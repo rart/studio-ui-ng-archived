@@ -8,7 +8,8 @@
       "/node_modules": "node_modules",
       "/components": "src/components",
       "/classes": "src/classes",
-      "/services": "src/services"
+      "/services": "src/services",
+      "/directives": "src/directives"
     }
   }
 }

@@ -9,7 +9,7 @@ import {ContentTypes} from "../classes/content-types";
 
     getSitemapSlowly() {
         return new Promise<ContentItem[]>(resolve =>
-            setTimeout(()=>resolve(SITEMAP), 2000) // 2 seconds
+            setTimeout(()=>resolve(SITEMAP.map(item => new ContentItem(item))), 2000) // 2 seconds
         );
     }
 }
