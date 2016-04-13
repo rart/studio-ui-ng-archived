@@ -16,6 +16,38 @@ import {ContentTypes} from "../classes/content-types";
 
 var SITEMAP = [
     {"id": "1", "label": "Home", "uri": "", "url": "/home", "path": "", "type": ContentTypes.Page, "children": []},
-    {"id": "2", "label": "Services", "uri": "", "url": "/services", "path": "", "type": ContentTypes.Page, "children": [{"id": "4", "label": "User Experience", "uri": "", "url": "/services/ux", "path": "", "type": ContentTypes.Page, "children": []},{"id": "5", "label": "Coding", "uri": "", "url": "/services/coding", "path": "", "type": ContentTypes.Page, "children": []}]},
-    {"id": "3", "label": "Contact Us", "uri": "", "url": "/contact-us", "path": "", "type": ContentTypes.Page, "children": []}
+    {
+        "id": "2",
+        "label": "Services",
+        "uri": "",
+        "url": "/services",
+        "path": "",
+        "type": ContentTypes.Page,
+        "children": [{
+            "id": "4",
+            "label": "User Experience",
+            "uri": "",
+            "url": "/services/ux",
+            "path": "",
+            "type": ContentTypes.Page,
+            "children": []
+        }, {
+            "id": "5",
+            "label": "Coding",
+            "uri": "",
+            "url": "/services/coding",
+            "path": "",
+            "type": ContentTypes.Page,
+            "children": []
+        }]
+    },
+    {
+        "id": "3",
+        "label": "Contact Us",
+        "uri": "",
+        "url": "/contact-us",
+        "path": "",
+        "type": ContentTypes.Page,
+        "children": []
+    }
 ];
