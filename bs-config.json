@@ -6,7 +6,9 @@
     "baseDir": "www",
     "routes": {
       "/node_modules": "node_modules",
-      "/components": "src/components"
+      "/components": "src/components",
+      "/classes": "src/classes",
+      "/services": "src/services"
     }
   }
 }

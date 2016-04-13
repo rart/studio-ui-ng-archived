@@ -20,19 +20,25 @@
   <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
   <script>
+    (function () {
 
-    System.config({
-      packages: {
-        components: {
-          format: 'register',
-          defaultExtension: 'js'
+      var cfg = {
+        format: 'register',
+        defaultExtension: 'js'
+      };
+
+      System.config({
+        packages: {
+          classes: cfg,
+          services: cfg,
+          components: cfg
         }
-      }
-    });
+      });
 
-    System.import('components/main')
-      .then(null, console.error.bind(console));
+      System.import('components/main')
+        .then(null, console.error.bind(console));
 
+    })();
   </script>
 
 </head>

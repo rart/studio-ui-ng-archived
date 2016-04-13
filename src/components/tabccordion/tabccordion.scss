@@ -1,0 +1,18 @@
+tabccordion {
+  top: 0;
+  right: 0;
+  width: $preview-panes-width;
+  bottom: 60px;
+  background: #fff;
+  position: absolute;
+  border-left: 1px solid $body-bg;
+  @media (min-width: map-get($grid-breakpoints, 'xl')) {
+    width: $preview-panes-width-xl;
+  }
+  tabs {
+    margin: 1px;
+  }
+  tab {
+
+  }
+}

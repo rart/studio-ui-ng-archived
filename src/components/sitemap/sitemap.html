@@ -1,0 +1,26 @@
+<menu>
+  <a (click)="addPage()">Add page</a>
+  <a (click)="setBulk(true)">Bulk</a>
+</menu>
+<i class="ion-load-a"></i> Loading&hellip;
+
+<ul class="tree-view">
+  <li *ngFor="#item of items">
+    <label class="c-input c-checkbox"><input type="checkbox"><span class="c-indicator"></span></label>
+    <button *ngIf="!item.isLeaf()" class="item-toggler"><i class="ion-ios-arrow-right"></i></button>
+    <div class="highlight-target">
+      <a>{{item.label}}</a>
+      <button class="item-menu-trigger"><i class="ion-ios-more"></i></button>
+    </div>
+    <ul *ngIf="!item.isLeaf()">
+      <li *ngFor="#item of item.children">
+        <label class="c-input c-checkbox"><input type="checkbox"><span class="c-indicator"></span></label>
+        <div class="highlight-target">
+          <i class="ion-ios-paper-outline"></i>
+          <a>{{item.label}}</a>
+          <button class="item-menu-trigger"><i class="ion-ios-more"></i></button>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>

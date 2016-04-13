@@ -1,28 +1,5 @@
-<section class="address-bar">
-  <button class="control back-button"><i class="ion-ios-arrow-left"></i></button>
-  <button class="control forward-button"><i class="ion-ios-arrow-right"></i></button>
-  <div class="input-skin">
-    <label for="page" class="site-display">{{site}}</label><input type="text" id="page" class="address-input" [(ngModel)]="path" />
-    <button class="control sitemap-button"><i class="ion-ios-arrow-down" title="Open Sitemap"></i></button>
-  </div>
-  <button class="control share-button"><i class="ion-ios-upload-outline" title="Share"></i></button>
-  <button class="control new-tab-button"><i class="ion-ios-plus-empty" title="New Tab"></i></button>
-</section>
-<panes>
-  <site-pane>
-    <h2>Site</h2>
-    <tabs>
-      <nav>
-        <a (click)="display(Tabs.Sitemap)" [class.active]="isSelected(Tabs.Sitemap)">Sitemap</a>
-        <a (click)="display(Tabs.Resources)" [class.active]="isSelected(Tabs.Resources)">Resources</a>
-        <a (click)="display(Tabs.Properties)" [class.active]="isSelected(Tabs.Properties)">Properties</a>
-      </nav>
-      <tab id="sitemapTab" *ngIf="isSelected(Tabs.Sitemap)">Sitemap</tab>
-      <tab id="siteResourcesTab" *ngIf="isSelected(Tabs.Resources)">Resources</tab>
-      <tab id="sitePropertiesTab" *ngIf="isSelected(Tabs.Properties)">Properites</tab>
-    </tabs>
-  </site-pane>
-</panes>
+<addressbar></addressbar>
+<tabccordion></tabccordion>
 <section class="preview-iframe">
   <iframe src="http://bootstrap-themes.github.io/dashboard/"></iframe>
 </section>
