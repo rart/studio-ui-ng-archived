@@ -12,7 +12,7 @@ export interface TreeItem {
         <ul>
             <li [class.is-leaf]="item.isLeaf()" *ngFor="#item of items">
                 <label *ngIf="enableSelection" class="c-input c-checkbox"><input type="checkbox"><span class="c-indicator"></span></label>
-                <button (click)="toggle(item)" class="item-toggler">
+                <button [disabled]="item.isLeaf()" (click)="toggle(item)" class="item-toggler">
                     <i [class.ion-ios-close-empty]="item.isLeaf()"
                        [class.ion-ios-arrow-right]="!item.isLeaf() && !isExpanded(item)"
                        [class.ion-ios-arrow-down]="!item.isLeaf() && isExpanded(item)"></i>

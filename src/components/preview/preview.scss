@@ -38,6 +38,9 @@ studio-bar,
 }
 
 .property-pane {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   border-bottom: 1px solid #c8c8c8;
   .pane-title {
     margin: 0;
@@ -50,6 +53,8 @@ studio-bar,
   }
   .pane-bd {
     padding: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .property-pane {
     header {
