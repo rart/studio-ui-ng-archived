@@ -1,15 +1,38 @@
 <site-pane class="property-pane">
-  <h2 class="pane-title">Site</h2>
-  <tabs>
-    <nav>
-      <a (click)="display(Tabs.Sitemap)" [class.active]="isSelected(Tabs.Sitemap)">Sitemap</a>
-      <a (click)="display(Tabs.Resources)" [class.active]="isSelected(Tabs.Resources)">Resources</a>
-      <a (click)="display(Tabs.Properties)" [class.active]="isSelected(Tabs.Properties)">Properties</a>
-    </nav>
-    <tab id="sitemapTab" class="site-map" *ngIf="isSelected(Tabs.Sitemap)">
-      <sitemap></sitemap>
-    </tab>
-    <tab id="siteResourcesTab" *ngIf="isSelected(Tabs.Resources)">Resources</tab>
-    <tab id="sitePropertiesTab" *ngIf="isSelected(Tabs.Properties)">Properites</tab>
-  </tabs>
+  <header>
+    <h2 class="pane-title">Site</h2>
+  </header>
+  <section class="pane-bd">
+    <tabs>
+      <nav>
+        <a (click)="display(Tabs.Sitemap)" [class.active]="isSelected(Tabs.Sitemap)">Sitemap</a>
+        <a (click)="display(Tabs.Resources)" [class.active]="isSelected(Tabs.Resources)">Resources</a>
+        <a (click)="display(Tabs.Properties)" [class.active]="isSelected(Tabs.Properties)">Properties</a>
+      </nav>
+      <tab id="sitemapTab" class="site-map" *ngIf="isSelected(Tabs.Sitemap)">
+        <sitemap></sitemap>
+      </tab>
+      <tab id="siteResourcesTab" *ngIf="isSelected(Tabs.Resources)">Resources</tab>
+      <tab id="sitePropertiesTab" *ngIf="isSelected(Tabs.Properties)">Properites</tab>
+    </tabs>
+  </section>
+</site-pane>
+<site-pane class="property-pane">
+  <header>
+    <h2 class="pane-title">Page</h2>
+  </header>
+  <section class="pane-bd">
+    <site-pane class="property-pane">
+      <header><h3 class="pane-title">Meta-data</h3></header>
+    </site-pane>
+    <site-pane class="property-pane">
+      <header><h3 class="pane-title">Selection</h3></header>
+    </site-pane>
+    <site-pane class="property-pane">
+      <header><h3 class="pane-title">Widgets</h3></header>
+    </site-pane>
+    <site-pane class="property-pane">
+      <header><h3 class="pane-title">Media</h3></header>
+    </site-pane>
+  </section>
 </site-pane>

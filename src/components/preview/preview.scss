@@ -1,6 +1,8 @@
 preview,
 .preview {
+  tabccordion {
 
+  }
 }
 
 preview-iframe,
@@ -45,6 +47,14 @@ studio-bar,
     font-weight: 700;
     line-height: 50px;
     font-size: $font-size-base;
+  }
+  .pane-bd {
+    padding: 1px;
+  }
+  .property-pane {
+    header {
+      background: #f2f2f2;
+    }
   }
 }
 

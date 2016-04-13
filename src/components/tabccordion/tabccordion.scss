@@ -2,6 +2,7 @@ tabccordion {
   top: 0;
   right: 0;
   width: $preview-panes-width;
+  overflow: auto;
   bottom: 60px;
   background: #fff;
   position: absolute;
@@ -10,7 +11,7 @@ tabccordion {
     width: $preview-panes-width-xl;
   }
   tabs {
-    margin: 1px;
+
   }
   tab {
 
