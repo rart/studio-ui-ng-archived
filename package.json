@@ -2,7 +2,10 @@
   "name": "studio-3-ui",
   "description": "Initial studio 3 UI app playground.",
   "homepage": "http://craftercms.org",
-  "repository": { "type": "git", "url": "git+https://github.com/rart/studio-3-ui.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rart/studio-3-ui.git"
+  },
   "version": "0.0.1",
   "license": "GNU v3",
   "author": "Roy Art <royart@me.com>",
@@ -30,7 +33,8 @@
   "devDependencies": {
     "concurrently": "^2.0.0",
     "lite-server": "^2.1.0",
+    "node-amplifyjs": "0.0.1",
     "typescript": "^1.8.9",
-    "typings":"^0.7.11"
+    "typings": "^0.7.11"
   }
 }

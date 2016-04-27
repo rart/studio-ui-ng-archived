@@ -1,13 +1,13 @@
 import {Component} from "angular2/core";
 import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 
-import {StudioUtils} from "../../classes/studio-utils";
+import {Utils} from "../../classes/studio-utils";
 import {NavAttributesWrap} from "../../classes/nav-attributes-wrap";
 
 @Component({
     selector: 'addressbar',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: StudioUtils.getComponentTemplateUrl('addressbar')
+    templateUrl: Utils.getComponentTemplateUrl('addressbar')
 }) export class AddressBarCmp extends NavAttributesWrap {
 
     /* *

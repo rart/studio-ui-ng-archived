@@ -13,15 +13,15 @@ export interface TreeItem {
             <li [class.is-leaf]="item.isLeaf()" *ngFor="#item of items">
                 <label *ngIf="enableSelection" class="c-input c-checkbox"><input type="checkbox"><span class="c-indicator"></span></label>
                 <button [disabled]="item.isLeaf()" (click)="toggle(item)" class="item-toggler">
-                    <i [class.ion-ios-close-empty]="item.isLeaf()"
+                    <i [class.ion-ios-minus-empty]="item.isLeaf()"
                        [class.ion-ios-arrow-right]="!item.isLeaf() && !isExpanded(item)"
                        [class.ion-ios-arrow-down]="!item.isLeaf() && isExpanded(item)"></i>
                 </button>
-                <div class="highlight-target">
+                <a class="highlight-target" [title]="item.label" (click)="itemClicked(item)">
                     <i class="ion-ios-paper-outline"></i>
-                    <a [title]="item.label">{{item.label}}</a>
-                    <button class="item-menu-trigger"><i class="ion-ios-more"></i></button>
-                </div>
+                    <span>{{item.label}}</span>
+                    <button #btn class="item-menu-trigger" (click)="showItemOptions($event, btn, item)"><i class="ion-ios-more"></i></button>
+                </a>
                 <tree *ngIf="isExpanded(item)" [items]="item.children" [enableSelection]="enableSelection"></tree>
             </li>
         </ul>`
@@ -40,4 +40,14 @@ export interface TreeItem {
         this._expanded[item.id] = !(!!this._expanded[item.id]);
     }
 
+    itemClicked(item) {
+
+    }
+
+    showItemOptions(event, element, item) {
+        console.log(event, element, item)
+    }
+
 }
+
+

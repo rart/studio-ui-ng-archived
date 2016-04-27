@@ -4,7 +4,7 @@ import {
     TemplateRef, ContentChildren
 } from 'angular2/core';
 
-import {StudioUtils} from "../../classes/studio-utils";
+import {Utils} from "../../classes/studio-utils";
 import {SitemapCmp} from "../sitemap/sitemap";
 
 enum SitePropsTabs {
@@ -16,7 +16,7 @@ enum SitePropsTabs {
 @Component({
     selector: 'tabccordion',
     directives: [SitemapCmp],
-    templateUrl: StudioUtils.getComponentTemplateUrl('tabccordion')
+    templateUrl: Utils.getComponentTemplateUrl('tabccordion')
 }) export class TabccordionCmp {
 
     Tabs = {

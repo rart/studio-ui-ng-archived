@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, forwardRef} from 'angular2/core';
-import {StudioUtils} from "../../classes/studio-utils";
+import {Utils} from "../../classes/studio-utils";
 import {ContentService} from "../../services/content-service";
 import {ContentItem} from "../../classes/content-item";
 import {ContentTypes} from "../../classes/content-types";
@@ -10,7 +10,7 @@ import {TreeCmp} from "../../components/tree/tree";
     selector: 'sitemap',
     providers: [ContentService],
     directives: [UnlessDirective, forwardRef(() => TreeCmp)],
-    templateUrl: StudioUtils.getComponentTemplateUrl('sitemap')
+    templateUrl: Utils.getComponentTemplateUrl('sitemap')
 }) export class SitemapCmp implements OnInit {
 
     items: Array<ContentItem>;
