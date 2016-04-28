@@ -13,6 +13,15 @@ import {MessageTopic} from "../../classes/communicator";
     directives: [ROUTER_DIRECTIVES, TabccordionCmp, AddressBarCmp]
 }) export class PreviewCmp extends NavAttributesWrap implements OnInit, CanReuse {
 
+    /**
+     * Causes `routerCanReuse` not to update the site & page variables.
+     * Used to prevent (re)loading the guest site twice when the iframe
+     * location it's changed from within the iframe itself (i.e. a link
+     * clicked inside of the iframe instead of navigating from a studio
+     * control.)
+     */
+    private _guestCheckInFlag: boolean;
+
     constructor(protected _routeParams: RouteParams,
                 private _router: Router,
                 private _communicator:CommunicationService) {
@@ -28,9 +37,10 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-        if (next.urlPath !== prev.urlPath) {
+        if ((!this._guestCheckInFlag) && (next.urlPath !== prev.urlPath)) {
             this._parseRouteParams(next.params['site'], next.params['page']);
         }
+        this._guestCheckInFlag = false;
         return true;
     }
 
@@ -56,6 +66,7 @@ import {MessageTopic} from "../../classes/communicator";
     onGuestCheckIn(data) {
         let site = 'sample'; // TODO use real site value
         let path = data.url;
+        this._guestCheckInFlag = true;
         this._router.navigateByUrl(`/preview/${site}/${Utils.encodeURI(path)}`);
     }
 
