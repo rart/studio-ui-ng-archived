@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams, ROUTER_DIRECTIVES} from "angular2/router";
+import {Router, RouteParams, ROUTER_DIRECTIVES, Location, CanReuse, ComponentInstruction} from "angular2/router";
 import {Utils} from "../../classes/studio-utils";
 import {TabccordionCmp} from "../tabccordion/tabccordion";
 import {AddressBarCmp} from "../addressbar/addressbar";
@@ -11,12 +11,26 @@ import {MessageTopic} from "../../classes/communicator";
     selector: 'preview',
     templateUrl: Utils.getComponentTemplateUrl('preview'),
     directives: [ROUTER_DIRECTIVES, TabccordionCmp, AddressBarCmp]
-}) export class PreviewCmp extends NavAttributesWrap implements OnInit {
+}) export class PreviewCmp extends NavAttributesWrap implements OnInit, CanReuse {
 
     constructor(private _rp: RouteParams,
                 private _router: Router,
+                private _location: Location,
                 private _communicator:CommunicationService) {
         super(_rp);
+    }
+
+    private _processMessage(message) {
+        switch(message.topic) {
+            case MessageTopic.GUEST_CHECK_IN:
+                this.onGuestCheckIn(message.data);
+                break;
+        }
+    }
+
+    routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
+        console.log(next, prev)
+        return true;
     }
 
     ngOnInit() {
@@ -28,27 +42,8 @@ import {MessageTopic} from "../../classes/communicator";
 
         communicator.addTarget(document.getElementById('previewFrame'));
 
-        communicator.subscribe(message => {
-            if (message.topic === MessageTopic.GUEST_CHECK_IN) {
-                console.log(++counter);
-                // communicator.addTarget(message.data.location);
-            }
-        });
+        let subscription = communicator.subscribe(message => this._processMessage(message));
 
-        let subscription = communicator.subscribe(message => this.processMessage(message));
-
-    }
-
-    processMessage(message) {
-        switch(message.topic) {
-            case MessageTopic.GUEST_CHECK_IN:
-                let site = 'sample'; // TODO use real site value
-                let page = Utils.encodeURI(message.data.url);
-                console.log(`Guest site checked in. Current URL is: ${message.data.url}`);
-                // this._router.navigate(['Preview', { site: 'sample', page: page }]);
-                // this._router.navigateByUrl(`/preview/${site}/${page}`);
-                break;
-        }
     }
 
     urlChanged() {
@@ -57,6 +52,15 @@ import {MessageTopic} from "../../classes/communicator";
 
     changeUrl() {
 
+    }
+
+    onGuestCheckIn(data) {
+        let site = 'sample'; // TODO use real site value
+        let path = data.url;
+        // this._router.navigate(['Preview', { site: site, page: Utils.encodeURI(path) }]);
+        this._router.navigateByUrl(`/preview/${site}/${Utils.encodeURI(path)}`);
+        // this._location.go(`/preview/${site}/${Utils.encodeURI(path)}`);
+        // console.log(`Guest site checked in. Current URL is: ${path}`);
     }
 
 }
