@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams, ROUTER_DIRECTIVES, Location, CanReuse, ComponentInstruction} from "angular2/router";
+import {Router, RouteParams, ROUTER_DIRECTIVES, CanReuse, ComponentInstruction} from "angular2/router";
 import {Utils} from "../../classes/studio-utils";
 import {TabccordionCmp} from "../tabccordion/tabccordion";
 import {AddressBarCmp} from "../addressbar/addressbar";
@@ -13,11 +13,10 @@ import {MessageTopic} from "../../classes/communicator";
     directives: [ROUTER_DIRECTIVES, TabccordionCmp, AddressBarCmp]
 }) export class PreviewCmp extends NavAttributesWrap implements OnInit, CanReuse {
 
-    constructor(private _rp: RouteParams,
+    constructor(protected _routeParams: RouteParams,
                 private _router: Router,
-                private _location: Location,
                 private _communicator:CommunicationService) {
-        super(_rp);
+        super(_routeParams);
     }
 
     private _processMessage(message) {
@@ -29,7 +28,9 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-        console.log(next, prev)
+        if (next.urlPath !== prev.urlPath) {
+            this._parseRouteParams(next.params['site'], next.params['page']);
+        }
         return true;
     }
 
@@ -37,12 +38,10 @@ import {MessageTopic} from "../../classes/communicator";
 
         super.ngOnInit();
 
-        let counter = 0;
         let communicator = this._communicator;
 
         communicator.addTarget(document.getElementById('previewFrame'));
-
-        let subscription = communicator.subscribe(message => this._processMessage(message));
+        communicator.subscribe(message => this._processMessage(message));
 
     }
 
@@ -57,10 +56,7 @@ import {MessageTopic} from "../../classes/communicator";
     onGuestCheckIn(data) {
         let site = 'sample'; // TODO use real site value
         let path = data.url;
-        // this._router.navigate(['Preview', { site: site, page: Utils.encodeURI(path) }]);
         this._router.navigateByUrl(`/preview/${site}/${Utils.encodeURI(path)}`);
-        // this._location.go(`/preview/${site}/${Utils.encodeURI(path)}`);
-        // console.log(`Guest site checked in. Current URL is: ${path}`);
     }
 
 }

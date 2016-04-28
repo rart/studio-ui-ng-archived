@@ -5,6 +5,7 @@ import {ContentItem} from "../../classes/content-item";
 import {ContentTypes} from "../../classes/content-types";
 import {UnlessDirective} from "../../directives/unless-directive";
 import {TreeCmp} from "../../components/tree/tree";
+import {Router} from "angular2/router";
 
 @Component({
     selector: 'sitemap',
@@ -16,17 +17,24 @@ import {TreeCmp} from "../../components/tree/tree";
     items: Array<ContentItem>;
     enableSelection:boolean = false;
 
-    constructor(private _contentService: ContentService) {}
+    constructor(private _router: Router,
+                private _contentService: ContentService) {}
 
     ngOnInit() {
         this._contentService.getSitemap()
             .then(items => this.items = items);
     }
 
-    addPage() {}
+    addPage() {
+
+    }
 
     setBulk(bulk:boolean) {
         this.enableSelection = bulk;
+    }
+
+    pageClicked(item: ContentItem) {
+        this._router.navigateByUrl(`/preview/${'sample'}/${Utils.encodeURI(item.url)}`);
     }
 
 }

@@ -19,10 +19,10 @@ import {MessageTopic} from "../../classes/communicator";
      *  > Typescript complains if `_rp` is named `_routeParams` as superclass
      *    has same variable name.
     * */
-    constructor(private _rp: RouteParams,
+    constructor(protected _routeParams: RouteParams,
                 private _router: Router,
                 private _communicator: CommunicationService) {
-        super(_rp);
+        super(_routeParams);
     }
 
     private _processMessage(message) {
@@ -37,12 +37,9 @@ import {MessageTopic} from "../../classes/communicator";
 
         super.ngOnInit();
 
-        let counter = 0;
-        let communicator = this._communicator;
+        this._communicator.subscribe((message) => this._processMessage(message));
 
-        communicator.addTarget(document.getElementById('previewFrame'));
-
-        let subscription = communicator.subscribe(message => this._processMessage(message));
+        let routerSubscription = this._router.subscribe((url) => console.log(url));
 
     }
 
@@ -51,10 +48,6 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     navigate() {
-        /*this._router.navigate(['Preview', {
-            site: 'sample',
-            page: Utils.encodeURI(this.page)
-        }]);*/
         let site = 'sample';
         let page = Utils.encodeURI(this.page);
         this._router.navigateByUrl(`/preview/${site}/${page}`);

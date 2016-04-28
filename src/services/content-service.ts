@@ -15,12 +15,12 @@ import {ContentTypes} from "../classes/content-types";
 }
 
 var SITEMAP = [
-    {"id": "1", "label": "Home", "uri": "", "url": "/home", "path": "", "type": ContentTypes.Page, "children": []},
+    {"id": "1", "label": "Home", "uri": "", "url": "/sample-guest/index.html", "path": "", "type": ContentTypes.Page, "children": []},
     {
         "id": "2",
         "label": "Services",
         "uri": "",
-        "url": "/services",
+        "url": "/sample-guest/services.html",
         "path": "",
         "type": ContentTypes.Page,
         "children": [{
@@ -43,9 +43,9 @@ var SITEMAP = [
     },
     {
         "id": "3",
-        "label": "Contact Us",
+        "label": "About",
         "uri": "",
-        "url": "/contact-us",
+        "url": "/sample-guest/about.html",
         "path": "",
         "type": ContentTypes.Page,
         "children": []
