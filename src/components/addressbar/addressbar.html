@@ -1,8 +1,19 @@
-<button class="control back-button"><i class="ion-ios-arrow-left"></i></button>
-<button class="control forward-button"><i class="ion-ios-arrow-right"></i></button>
-<div class="input-skin">
-  <label for="page" class="site-display">{{site}}</label><input type="text" id="page" class="address-input" [(ngModel)]="page" (keyup.enter)="navigate()" />
-  <button class="control sitemap-button"><i class="ion-ios-arrow-down" title="Open Sitemap"></i></button>
-</div>
-<button class="control share-button"><i class="ion-ios-upload-outline" title="Share"></i></button>
-<button class="control new-tab-button"><i class="ion-ios-plus-empty" title="New Tab"></i></button>
+<section class="controls">
+  <button class="control back-button" (click)="backClicked()"><i class="ion-ios-arrow-left"></i></button>
+  <button class="control forward-button" (click)="forwardClicked()"><i class="ion-ios-arrow-right"></i></button>
+  <div class="input-skin">
+    <label for="page" class="site-display">{{site}}</label><input type="text" #urlBox id="page" class="address-input" [(ngModel)]="page" (keyup.enter)="navigate(urlBox.value)" />
+    <button class="control sitemap-button"><i class="ion-ios-arrow-down" title="Open Sitemap"></i></button>
+  </div>
+  <button class="control share-button"><i class="ion-ios-upload-outline" title="Share"></i></button>
+  <button class="control new-tab-button"><i class="ion-ios-plus-empty" title="New Tab"></i></button>
+</section>
+<nav class="tab-bar">
+  <a class="active">Sit Sollicitudin Nullam Cursus Fermentum <button>&times;</button></a>
+  <a>Tristique Fringilla Aenean Condimentum Vulputate <button>&times;</button></a>
+  <a>Commodo Tellus Euismod Etiam Sit <button>&times;</button></a>
+  <a>Pellentesque Risus Fringilla Aenean Purus <button>&times;</button></a>
+  <a>Tab 5 Sit Sollicitudin Nullam Cursus Fermentum <button>&times;</button></a>
+  <a>Euismod Condimentum Etiam Consectetur Vehicula <button>&times;</button></a>
+  <a>Risus Porta Ipsum Lorem Malesuada <button>&times;</button></a>
+</nav>

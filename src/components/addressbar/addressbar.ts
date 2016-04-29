@@ -1,4 +1,4 @@
-import {Component, OnInit} from "angular2/core";
+import {Component, OnInit, EventEmitter, Output} from "angular2/core";
 import {ROUTER_DIRECTIVES, RouteParams, Router} from "angular2/router";
 
 import {Utils} from "../../classes/studio-utils";
@@ -12,15 +12,11 @@ import {MessageTopic} from "../../classes/communicator";
     templateUrl: Utils.getComponentTemplateUrl('addressbar')
 }) export class AddressBarCmp extends NavAttributesWrap implements OnInit {
 
-    /* *
-     * Have the routeParams private variable twice, _routeParams in superclass & _rp in child...
-     *  > Angular crashes if this class doesn't have this constructor:
-     *    EXCEPTION: TypeError: Cannot read property 'get' of undefined in [null]
-     *  > Typescript complains if `_rp` is named `_routeParams` as superclass
-     *    has same variable name.
-    * */
+    @Output() public back: EventEmitter = new EventEmitter();
+    @Output() public forward: EventEmitter = new EventEmitter();
+    @Output() public input: EventEmitter = new EventEmitter();
+
     constructor(protected _routeParams: RouteParams,
-                private _router: Router,
                 private _communicator: CommunicationService) {
         super(_routeParams);
     }
@@ -39,18 +35,23 @@ import {MessageTopic} from "../../classes/communicator";
 
         this._communicator.subscribe((message) => this._processMessage(message));
 
-        let routerSubscription = this._router.subscribe((url) => console.log(url));
-
     }
 
     onGuestCheckIn(data) {
         this.page = data.url;
     }
 
-    navigate() {
-        let site = 'sample';
-        let page = Utils.encodeURI(this.page);
-        this._router.navigateByUrl(`/preview/${site}/${page}`);
+    navigate(value) {
+        // value === this.page
+        this.input.emit(this.page);
+    }
+
+    backClicked() {
+         this.back.emit();
+    }
+
+    forwardClicked() {
+        this.forward.emit();
     }
 
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams, ROUTER_DIRECTIVES, CanReuse, ComponentInstruction} from "angular2/router";
+import {Router, RouteParams, ROUTER_DIRECTIVES, CanReuse, ComponentInstruction, Location} from "angular2/router";
 import {Utils} from "../../classes/studio-utils";
 import {TabccordionCmp} from "../tabccordion/tabccordion";
 import {AddressBarCmp} from "../addressbar/addressbar";
@@ -20,12 +20,29 @@ import {MessageTopic} from "../../classes/communicator";
      * clicked inside of the iframe instead of navigating from a studio
      * control.)
      */
-    private _guestCheckInFlag: boolean;
+    private _guestCheckInFlag: boolean = false;
+    /**
+     * Signals when the guest page rendered by the iframe is not what the model
+     * state ([@link page], [@link site]) reflects. This happens when navigation
+     * occurs from the iframe and not from studio and the 'dirty' state is allowed
+     * to avoid guest site/page loading twice. Works together with [@link _guestCheckInFlag].
+     * Variable _dirty, is a measure for back/forward button (history) navigation. When the
+     * state is 'dirty', the iframe might not refresh due it's src thought to be already what
+     * the URL reflects but isn't.
+     * @type {boolean}
+     * @private
+     */
+    private _dirty: boolean = false;
 
-    constructor(protected _routeParams: RouteParams,
-                private _router: Router,
+    constructor(private _router: Router,
+                private _location: Location,
+                protected _routeParams: RouteParams,
                 private _communicator:CommunicationService) {
         super(_routeParams);
+    }
+
+    onAddressbarChange($event) {
+        console.log($event);
     }
 
     private _processMessage(message) {
@@ -37,10 +54,20 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-        if ((!this._guestCheckInFlag) && (next.urlPath !== prev.urlPath)) {
-            this._parseRouteParams(next.params['site'], next.params['page']);
+        console.log('before', next.urlPath, prev.urlPath, this._guestCheckInFlag, this.site, this.page);
+        if (next.urlPath !== prev.urlPath) {
+            if (this._guestCheckInFlag) {
+                this._dirty = true;
+            } else {
+                if (this._dirty) {
+                    document.getElementById('previewFrame').setAttribute('src', this.page);
+                }
+                this._parseRouteParams(next.params['site'], next.params['page']);
+                this._dirty = false;
+            }
         }
         this._guestCheckInFlag = false;
+        console.log('after', next.urlPath, prev.urlPath, this._guestCheckInFlag, this.site, this.page);
         return true;
     }
 
@@ -55,19 +82,19 @@ import {MessageTopic} from "../../classes/communicator";
 
     }
 
-    urlChanged() {
-
-    }
-
-    changeUrl() {
-
-    }
-
     onGuestCheckIn(data) {
         let site = 'sample'; // TODO use real site value
         let path = data.url;
         this._guestCheckInFlag = true;
         this._router.navigateByUrl(`/preview/${site}/${Utils.encodeURI(path)}`);
+    }
+
+    onBack() {
+        this._location.back();
+    }
+
+    onForward() {
+        this._location.forward();
     }
 
 }
