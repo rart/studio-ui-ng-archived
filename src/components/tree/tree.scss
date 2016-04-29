@@ -8,14 +8,27 @@ tree {
     list-style: none;
     padding-left: 25px;
   }
+  .item-line {
+    display: flex;
+  }
   .item-toggler {
 
   }
   .item-menu-trigger {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
     visibility: hidden;
   }
   .highlight-target {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    padding-right: 30px;
     display: inline-block;
+    text-overflow: ellipsis;
     &:hover {
       background: #f2f2f2;
       .item-menu-trigger {

@@ -37,4 +37,8 @@ import {Router} from "angular2/router";
         this._router.navigateByUrl(`/preview/${'sample'}/${Utils.encodeURI(item.url)}`);
     }
 
+    itemIconClassGenerator(item: ContentItem) {
+        return 'ion-ios-paper-outline';
+    }
+
 }
