@@ -97,7 +97,7 @@ import {ContentItem} from "../../classes/content-item";
         let site = this.site;
         let page = Utils.encodeURI(url);
 
-        this.page = page;
+        this.page = url;
         this.site = site;
         this._router.navigateByUrl(`/preview/${site}/${page}`);
 
