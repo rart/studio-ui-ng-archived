@@ -14,19 +14,11 @@ import {MessageTopic} from "../../classes/communicator";
 
     @Output() public back: EventEmitter = new EventEmitter();
     @Output() public forward: EventEmitter = new EventEmitter();
-    @Output() public input: EventEmitter = new EventEmitter();
+    @Output() public urlEnter: EventEmitter = new EventEmitter();
 
     constructor(protected _routeParams: RouteParams,
                 private _communicator: CommunicationService) {
         super(_routeParams);
-    }
-
-    private _processMessage(message) {
-        switch(message.topic) {
-            case MessageTopic.GUEST_CHECK_IN:
-                this.onGuestCheckIn(message.data);
-                break;
-        }
     }
 
     ngOnInit() {
@@ -43,7 +35,7 @@ import {MessageTopic} from "../../classes/communicator";
 
     navigate(value) {
         // value === this.page
-        this.input.emit(this.page);
+        this.urlEnter.emit(this.page);
     }
 
     backClicked() {
@@ -52,6 +44,14 @@ import {MessageTopic} from "../../classes/communicator";
 
     forwardClicked() {
         this.forward.emit();
+    }
+
+    private _processMessage(message) {
+        switch(message.topic) {
+            case MessageTopic.GUEST_CHECK_IN:
+                this.onGuestCheckIn(message.data);
+                break;
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import {AddressBarCmp} from "../addressbar/addressbar";
 import {NavAttributesWrap} from "../../classes/nav-attributes-wrap";
 import {CommunicationService} from "../../services/communication-service";
 import {MessageTopic} from "../../classes/communicator";
+import {ContentItem} from "../../classes/content-item";
 
 @Component({
     selector: 'preview',
@@ -41,16 +42,12 @@ import {MessageTopic} from "../../classes/communicator";
         super(_routeParams);
     }
 
-    onAddressbarChange($event) {
-        console.log($event);
+    onAddressbarChange(addressbarValue: string) {
+        this._navigate(addressbarValue);
     }
 
-    private _processMessage(message) {
-        switch(message.topic) {
-            case MessageTopic.GUEST_CHECK_IN:
-                this.onGuestCheckIn(message.data);
-                break;
-        }
+    onSitemapItemClicked(contentItem: ContentItem) {
+        this._navigate(contentItem.url);
     }
 
     routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
@@ -93,6 +90,28 @@ import {MessageTopic} from "../../classes/communicator";
 
     onForward() {
         this._location.forward();
+    }
+
+    private _navigate(url) {
+
+        let site = this.site;
+        let page = Utils.encodeURI(url);
+
+        this.page = page;
+        this.site = site;
+        this._router.navigateByUrl(`/preview/${site}/${page}`);
+
+    }
+
+    private _processMessage(message) {
+        switch(message.topic) {
+            case MessageTopic.GUEST_CHECK_IN:
+                this.onGuestCheckIn(message.data);
+                break;
+            case MessageTopic.ContentItemClicked:
+                this.onSitemapItemClicked(message.data);
+                break;
+        }
     }
 
 }

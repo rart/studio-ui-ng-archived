@@ -23,6 +23,7 @@ tree {
   }
   .highlight-target {
     flex-grow: 1;
+    cursor: pointer;
     overflow: hidden;
     position: relative;
     white-space: nowrap;

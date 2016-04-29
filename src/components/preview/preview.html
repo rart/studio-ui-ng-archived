@@ -1,4 +1,4 @@
-<addressbar (input)="onAddressbarChange($event)" (back)="onBack()" (forward)="onForward()"></addressbar>
+<addressbar (urlEnter)="onAddressbarChange($event)" (back)="onBack()" (forward)="onForward()"></addressbar>
 <tabccordion></tabccordion>
 <section class="preview-iframe">
   <iframe #previewFrame id="previewFrame" [src]="page"></iframe>

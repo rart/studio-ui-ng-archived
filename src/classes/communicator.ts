@@ -1,5 +1,6 @@
 
 export enum MessageTopic {
+    ContentItemClicked,
     ALL,
     GUEST_CHECK_IN,
     START_ICE,

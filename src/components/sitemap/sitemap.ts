@@ -6,6 +6,11 @@ import {ContentTypes} from "../../classes/content-types";
 import {UnlessDirective} from "../../directives/unless-directive";
 import {TreeCmp} from "../../components/tree/tree";
 import {Router} from "angular2/router";
+import {EventEmitter} from "angular2/core";
+import {Output} from "angular2/core";
+import {CommunicationService} from "../../services/communication-service";
+import {MessageTopic} from "../../classes/communicator";
+import {MessageScope} from "../../classes/communicator";
 
 @Component({
     selector: 'sitemap',
@@ -17,7 +22,10 @@ import {Router} from "angular2/router";
     items: Array<ContentItem>;
     enableSelection:boolean = false;
 
+    @Output() pageClicked: EventEmitter = new EventEmitter();
+
     constructor(private _router: Router,
+                private _communicator: CommunicationService,
                 private _contentService: ContentService) {}
 
     ngOnInit() {
@@ -33,8 +41,9 @@ import {Router} from "angular2/router";
         this.enableSelection = bulk;
     }
 
-    pageClicked(item: ContentItem) {
-        this._router.navigateByUrl(`/preview/${'sample'}/${Utils.encodeURI(item.url)}`);
+    onPageClicked(item: ContentItem) {
+        this.pageClicked.emit(item.url);
+        this._communicator.publish(MessageTopic.ContentItemClicked, item, MessageScope.Local);
     }
 
     itemIconClassGenerator(item: ContentItem) {
