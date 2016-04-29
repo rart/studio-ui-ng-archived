@@ -54,7 +54,6 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     routerCanReuse(next: ComponentInstruction, prev: ComponentInstruction) {
-        console.log('before', next.urlPath, prev.urlPath, this._guestCheckInFlag, this.site, this.page);
         if (next.urlPath !== prev.urlPath) {
             if (this._guestCheckInFlag) {
                 this._dirty = true;
@@ -67,7 +66,6 @@ import {MessageTopic} from "../../classes/communicator";
             }
         }
         this._guestCheckInFlag = false;
-        console.log('after', next.urlPath, prev.urlPath, this._guestCheckInFlag, this.site, this.page);
         return true;
     }
 
