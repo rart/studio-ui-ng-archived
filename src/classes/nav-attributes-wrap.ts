@@ -1,21 +1,23 @@
 import {OnInit} from "angular2/core";
 import {RouteParams} from "angular2/router";
+import {Utils} from "./studio-utils";
 
 export class NavAttributesWrap implements OnInit {
 
-    site: String;
-    path: String;
+    site: string;
+    page: string;
 
-    constructor(private _routeParams: RouteParams) {}
+    constructor(protected _routeParams: RouteParams) {}
 
-    public ngOnInit() {
-
-        let site = this._routeParams.get('site') || '',
-            path = decodeURIComponent(this._routeParams.get('page') || '');
-
+    protected _parseRouteParams(site, page) {
         this.site = site;
-        this.path = path;
+        this.page = Utils.decodeURI(page);
+    }
 
+    ngOnInit() {
+        let site = this._routeParams.get('site') || '',
+            page = this._routeParams.get('page') || '';
+        this._parseRouteParams(site, page);
     }
 
 }

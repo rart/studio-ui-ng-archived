@@ -1,6 +1,6 @@
-<addressbar></addressbar>
+<addressbar (urlEnter)="onAddressbarChange($event)" (back)="onBack()" (forward)="onForward()"></addressbar>
 <tabccordion></tabccordion>
 <section class="preview-iframe">
-  <iframe src="http://bootstrap-themes.github.io/dashboard/"></iframe>
+  <iframe #previewFrame id="previewFrame" [src]="page"></iframe>
 </section>
 <section class="studio-bar"></section>

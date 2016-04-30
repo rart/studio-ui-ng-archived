@@ -2,14 +2,17 @@ addressbar {
   top: 0;
   left: 0;
   right: $preview-panes-width;
-  height: 50px;
-  display: flex;
+   height: 50px;
+  //height: 80px;
   background: #fff;
-  padding: 9px 5px;
-  flex-wrap: nowrap;
   position: absolute;
   @media (min-width: map-get($grid-breakpoints, 'xl')) {
     right: $preview-panes-width-xl;
+  }
+  .controls {
+    display: flex;
+    padding: 9px 5px;
+    flex-wrap: nowrap;
   }
   .control {
     outline: none;
@@ -38,6 +41,9 @@ addressbar {
     flex-basis: 30px;
     margin-right: 5px;
   }
+  .new-tab-button {
+    display: none;
+  }
   .input-skin {
     flex-basis: 75%;
     padding: 5px 10px;
@@ -52,6 +58,7 @@ addressbar {
     color: #575757;
   }
   input.address-input {
+    width: 80%;
     border: none;
     outline: none;
   }
@@ -61,5 +68,41 @@ addressbar {
     bottom: 0;
     width: 30px;
     position: absolute;
+  }
+  .tab-bar {
+    //display: flex;
+    display: none;
+    flex-wrap: nowrap;
+    background-color: #fff;
+    a {
+      height: 30px;
+      flex-grow: 1;
+      display: block;
+      cursor: pointer;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 20px 0 10px;
+      overflow: hidden;
+      line-height: 30px;
+      color: $gray-light;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid $body-bg;
+      border-right: 1px solid $body-bg;
+      &.active {
+        cursor: default;
+        background-color: lighten($body-bg, 10%);
+      }
+      &:last-child {
+        border-right: none;
+      }
+      button {
+        top: 0px;
+        right: 0px;
+        height: 30px;
+        line-height: 26px;
+        position: absolute;
+      }
+    }
   }
 }

@@ -9,7 +9,8 @@
       "/components": "src/components",
       "/classes": "src/classes",
       "/services": "src/services",
-      "/directives": "src/directives"
+      "/directives": "src/directives",
+      "/guest": "src/guest"
     }
   }
 }
