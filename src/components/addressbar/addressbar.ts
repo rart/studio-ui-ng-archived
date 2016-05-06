@@ -12,9 +12,9 @@ import {MessageTopic} from "../../classes/communicator";
     templateUrl: Utils.getComponentTemplateUrl('addressbar')
 }) export class AddressBarCmp extends NavAttributesWrap implements OnInit {
 
-    @Output() public back: EventEmitter = new EventEmitter();
-    @Output() public forward: EventEmitter = new EventEmitter();
-    @Output() public urlEnter: EventEmitter = new EventEmitter();
+    @Output() public back = new EventEmitter();
+    @Output() public forward = new EventEmitter();
+    @Output() public urlEnter = new EventEmitter();
 
     constructor(protected _routeParams: RouteParams,
                 private _communicator: CommunicationService) {
@@ -39,11 +39,11 @@ import {MessageTopic} from "../../classes/communicator";
     }
 
     backClicked() {
-         this.back.emit();
+         this.back.emit(null);
     }
 
     forwardClicked() {
-        this.forward.emit();
+        this.forward.emit(null);
     }
 
     private _processMessage(message) {
