@@ -22,7 +22,7 @@ import {MessageScope} from "../../classes/communicator";
     items: Array<ContentItem>;
     enableSelection:boolean = false;
 
-    @Output() pageClicked: EventEmitter = new EventEmitter();
+    @Output() pageClicked = new EventEmitter();
 
     constructor(private _router: Router,
                 private _communicator: CommunicationService,
