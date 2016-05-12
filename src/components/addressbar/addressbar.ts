@@ -1,5 +1,5 @@
-import {Component, OnInit, EventEmitter, Output} from "angular2/core";
-import {ROUTER_DIRECTIVES, RouteParams, Router} from "angular2/router";
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {ROUTER_DIRECTIVES, RouteParams, Router} from '@angular/router-deprecated';
 
 import {Utils} from "../../classes/studio-utils";
 import {NavAttributesWrap} from "../../classes/nav-attributes-wrap";

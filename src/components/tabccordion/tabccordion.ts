@@ -2,7 +2,7 @@ import {
     Component, Directive, Input,
     QueryList, ViewContainerRef,
     TemplateRef, ContentChildren
-} from 'angular2/core';
+} from '@angular/core';
 
 import {Utils} from "../../classes/studio-utils";
 import {SitemapCmp} from "../sitemap/sitemap";

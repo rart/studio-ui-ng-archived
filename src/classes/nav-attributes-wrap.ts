@@ -1,5 +1,5 @@
-import {OnInit} from "angular2/core";
-import {RouteParams} from "angular2/router";
+import {OnInit} from from '@angular/core';
+import {RouteParams} from '@angular/router-deprecated';
 import {Utils} from "./studio-utils";
 
 export class NavAttributesWrap implements OnInit {

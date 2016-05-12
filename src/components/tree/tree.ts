@@ -1,5 +1,4 @@
-import {Component, Input, EventEmitter} from 'angular2/core';
-import {Output} from "angular2/core";
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 
 export interface TreeItem {
     id: string;
@@ -11,7 +10,7 @@ export interface TreeItem {
     directives: [TreeCmp],
     template: `
         <ul>
-            <li [class.is-leaf]="item.isLeaf()" *ngFor="#item of items">
+            <li [class.is-leaf]="item.isLeaf()" *ngFor="let item of items">
                 <div class="item-line">
                     <label *ngIf="enableSelection" class="c-input c-checkbox"><input type="checkbox"><span class="c-indicator"></span></label>
                     <button [disabled]="item.isLeaf()" (click)="toggle(item)" class="item-toggler">
@@ -66,5 +65,3 @@ export interface TreeItem {
     }
 
 }
-
-
