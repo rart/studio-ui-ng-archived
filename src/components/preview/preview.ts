@@ -1,5 +1,7 @@
-import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams, ROUTER_DIRECTIVES, CanReuse, ComponentInstruction, Location} from "angular2/router";
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {Router, RouteParams, ROUTER_DIRECTIVES, CanReuse, ComponentInstruction} from '@angular/router-deprecated';
+
 import {Utils} from "../../classes/studio-utils";
 import {TabccordionCmp} from "../tabccordion/tabccordion";
 import {AddressBarCmp} from "../addressbar/addressbar";

@@ -1,4 +1,4 @@
-import {Injectable} from "angular2/core";
+import {Injectable} from '@angular/core';
 import {ContentItem} from "../classes/content-item";
 import {ContentTypes} from "../classes/content-types";
 
