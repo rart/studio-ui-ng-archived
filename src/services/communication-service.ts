@@ -1,6 +1,6 @@
 
 import {Subject} from 'rxjs/Subject';
-import {Injectable, EventEmitter, Component, Input, OnInit} from 'angular2/core';
+import {Injectable, EventEmitter, Component, Input, OnInit} from '@angular/core';
 
 import {ContentItem} from "../classes/content-item";
 import {ContentTypes} from "../classes/content-types";

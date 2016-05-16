@@ -1,13 +1,12 @@
-import {Component, OnInit, Input, forwardRef} from 'angular2/core';
+import {Output, Component, OnInit, Input, forwardRef, EventEmitter} from '@angular/core';;
+import {Router} from "@angular/router-deprecated";
+
 import {Utils} from "../../classes/studio-utils";
 import {ContentService} from "../../services/content-service";
 import {ContentItem} from "../../classes/content-item";
 import {ContentTypes} from "../../classes/content-types";
 import {UnlessDirective} from "../../directives/unless-directive";
 import {TreeCmp} from "../../components/tree/tree";
-import {Router} from "angular2/router";
-import {EventEmitter} from "angular2/core";
-import {Output} from "angular2/core";
 import {CommunicationService} from "../../services/communication-service";
 import {MessageTopic} from "../../classes/communicator";
 import {MessageScope} from "../../classes/communicator";
@@ -22,7 +21,7 @@ import {MessageScope} from "../../classes/communicator";
     items: Array<ContentItem>;
     enableSelection:boolean = false;
 
-    @Output() pageClicked: EventEmitter = new EventEmitter();
+    @Output() pageClicked = new EventEmitter();
 
     constructor(private _router: Router,
                 private _communicator: CommunicationService,
