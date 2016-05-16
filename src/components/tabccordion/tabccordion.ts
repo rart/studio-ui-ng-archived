@@ -6,38 +6,16 @@ import {
 
 import {Utils} from "../../classes/studio-utils";
 import {SitemapCmp} from "../sitemap/sitemap";
-
-enum SitePropsTabs {
-    Sitemap,
-    Resources,
-    Properties
-}
+import {Tabs} from "../tabs/tabs";
+import {Tab} from "../tabs/tab";
 
 @Component({
     selector: 'tabccordion',
-    directives: [SitemapCmp],
+    directives: [SitemapCmp, Tabs, Tab],
     templateUrl: Utils.getComponentTemplateUrl('tabccordion')
 }) export class TabccordionCmp {
 
-    Tabs = {
-        Sitemap: SitePropsTabs.Sitemap,
-        Resources: SitePropsTabs.Resources,
-        Properties: SitePropsTabs.Properties
-    };
-
-    private _activeTab;
-
-    constructor () {
-        this._activeTab = SitePropsTabs.Sitemap;
-    }
-
-    display(tab: SitePropsTabs) {
-        this._activeTab = tab;
-    }
-
-    isSelected(tab: SitePropsTabs) : boolean {
-        return this._activeTab === tab;
-    }
+    constructor () {}
 
 }
 
