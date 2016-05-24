@@ -1,0 +1,121 @@
+accordions, .accordions{
+        height: 100%;
+}
+.accordions{
+    display:flex;
+    flex-direction:column;
+    .property-pane header {
+        background: #f2f2f2;
+    }
+    ac-item{
+        flex:0 0;
+        transition: flex 0.4s;
+        position: relative;
+        display:flex;
+        min-height: 50px;
+        .ac-item {
+            display:flex;
+            flex-direction: column;
+            flex: 1 1;
+            
+            ac-item-head{
+                flex: 0 0;
+                .ac-item-head{
+                    padding: 10px 0;
+                    a{
+                        color: #373a3c;
+                        display: block;
+                        margin: 0;
+                        cursor: pointer;
+                        padding: 0 10px;
+                        font-weight: 700;
+                        line-height: 30px;
+                        font-size: 1rem;
+                        text-decoration: none;
+                    }
+                }
+            }
+            ac-item-body{
+                flex: 1 1;
+                display:flex;
+                .ac-item-body{
+                    display: flex;
+                    flex:1 1;
+                    overflow: hidden;
+                    height: 0;
+                    transition: 0.4s height;
+                    .inner{
+                        padding: 10px 0;
+                        overflow: auto !important;
+                        flex: 1 1;
+                    }
+                }
+            }
+        }
+        &.open{
+            flex: 1 1;
+            ac-item-body .ac-item-body{
+                display:flex;
+            }
+        }
+    }
+
+    &.resizing{
+        cursor: row-resize;
+        ac-item{
+           transition: none; 
+        }
+    }
+
+    .drag-bar{
+        display: block;
+        width: 100%;
+        height: 1px;
+        background:#c8c8c8;
+        position: absolute;
+        bottom: 0;
+        display:block;
+        cursor: row-resize;
+    }
+}
+
+
+.accordions .ac-item-head a {
+    color: #000000;
+    display: block;
+}
+
+.accordions .ac-item .ac-item-head a .toggle-icon {
+    display: block;
+    float: right;
+    height: 16px;
+    position: relative;
+    transform: rotate(45deg);
+    transition: 0.3s transform;
+    width: 16px;
+    margin-top: 6px;
+}
+
+.accordions .ac-item.is-collapsed .ac-item-head a .toggle-icon {
+    transform: rotate(0);
+}
+
+.accordions .ac-item-head a .toggle-icon:before,
+.accordions .ac-item-head a .toggle-icon:after {
+    background: #000000;
+    content: ' ';
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 1px;
+}
+
+.accordions .ac-item-head a .toggle-icon:after {
+    transform: rotate(90deg);
+}
+
+
+.accordions .ac-item .ac-item-body .inner {
+    padding: 10px 0 0 0;
+}

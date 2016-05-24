@@ -5,62 +5,52 @@ import {
 } from '@angular/core';
 
 import {Utils} from "../../classes/studio-utils";
-import {SitemapCmp} from "../sitemap/sitemap";
+//import {SitemapCmp} from "../sitemap/sitemap";
+
 import {Tabs} from "../tabs/tabs";
 import {Tab} from "../tabs/tab";
 
+import {ACItemBody} from '../accordions/ac-item-body';
+import {ACItemHead} from '../accordions/ac-item-head';
+import {ACItem} from '../accordions/ac-item';
+import {Accordions} from '../accordions/accordions';
+
+import {RenderComponents} from '../render/renderComponents';
+
+var Items = [
+    {
+        "id": 1,
+        "label": "Site",
+        "content": [
+            {
+            "id": 1,
+            "type": "tabs",
+            "children": [{ "label": "Sitemap","render":"sitemap","active":true}, { "label": "Resources" }, { "label": "Properties" }]
+            }
+        ]
+
+    },
+    {
+        "id": 1,
+        "label": "Page",
+        "content": [{
+            "id": 1,
+            "type": "list",
+            "children": [{ "label": "Meta-data" }, { "label": "Selection" }, { "label": "Widgets" }, { "label": "Media" }]
+
+        }]
+
+    },
+];
+
 @Component({
     selector: 'tabccordion',
-    directives: [SitemapCmp, Tabs, Tab],
+    directives: [Tabs, Tab, Accordions, ACItem, ACItemHead, ACItemBody, RenderComponents],
     templateUrl: Utils.getComponentTemplateUrl('tabccordion')
 }) export class TabccordionCmp {
-
+    Items = Items;
     constructor () {}
 
 }
 
-/* These don't work...
 
-@Directive({
-    selector: 'tab'
-}) export class Tab {
-
-    @Input() title: string;
-    private _active:boolean = false;
-
-    constructor (public viewContainer: ViewContainerRef,
-                 public templateRef: TemplateRef) { }
-
-    @Input set active(active: boolean) {
-        if (active == this._active) return;
-        this._active = active;
-        if (active) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
-        } else {
-            this.viewContainer.remove(0);
-        }
-    }
-
-    get active(): boolean {
-        return this._active;
-    }
-
-}
-
-@Component({
-    selector: 'tabs',
-    template: `
-        <nav>
-          <a *ngFor="#tab of tabs"
-             (click)="select(tab)"
-             [class.active]="tab.active">{{tab.title}}</a>
-        </nav>
-        <ng-content></ng-content>`
-}) export class Tabs {
-    @ContentChildren(Tab) tabs: QueryList<Tab>;
-    select(tab: Tab) {
-        this.tabs.forEach((t:Tab) => (t.active = t == tab))
-    }
-}
-
- */
