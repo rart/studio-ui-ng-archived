@@ -1,5 +1,5 @@
+
 import './polyfills.ts';
+import {crafterStudioGuestBootstrap} from "./app/guest";
 
-import {bootstrap} from "app/guest";
-
-bootstrap();
+crafterStudioGuestBootstrap();

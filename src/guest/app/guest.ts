@@ -1,8 +1,16 @@
-import "node_modules/node-amplifyjs/lib/amplify.core.js";
-import {MessageScope, MessageTopic} from "../../common/communicator";
+
+import "../../../node_modules/jquery/dist/jquery.js";
+import {MessageTopic} from "../../studio/app/classes/communicator";
 import {GuestCommunicator} from "./guest-communicator";
 
-export function bootstrap() {
+declare var $: any;
+declare function require(name: string): any;
+
+const CSS = require("./guest.scss");
+
+export function crafterStudioGuestBootstrap() {
+
+  $(`<style>${CSS}</style>`).appendTo('head');
 
   let protocol = window.location.protocol;
   let hostname = window.location.hostname;
@@ -22,5 +30,15 @@ export function bootstrap() {
   communicator.subscribe(MessageTopic.START_ICE, function (message) {
     console.log('Ice Start Requested', message);
   });
+
+  communicator.subscribe(MessageTopic.GUEST_RELOAD_REQUEST, function () {
+    window.location.reload();
+  });
+
+  communicator.subscribe(MessageTopic.GUEST_NAV_REQUEST, function (message) {
+    window.location.href = message;
+  });
+
+  console.debug(`${window.location.href} Loaded On Guest`);
 
 }

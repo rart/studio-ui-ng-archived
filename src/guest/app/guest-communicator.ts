@@ -1,7 +1,6 @@
 
-import {Communicator, MessageTopic, MessageScope} from "../../common/communicator";
-
-declare var amplify;
+import {Amplify} from "./amplify";
+import {Communicator, MessageTopic, MessageScope} from "../../studio/app/classes/communicator";
 
 export class GuestCommunicator extends Communicator {
 
@@ -13,9 +12,9 @@ export class GuestCommunicator extends Communicator {
 
     let scopedTopic = this._getScopedTopic(data.topic, data.scope);
 
-    amplify.publish(`${MessageTopic.ALL}`, data.data);
-    amplify.publish(`${data.topic}`, data.data);
-    amplify.publish(scopedTopic, data.data);
+    Amplify.publish(`${MessageTopic.ALL}`, data.data);
+    Amplify.publish(`${data.topic}`, data.data);
+    Amplify.publish(scopedTopic, data.data);
 
   }
 
@@ -25,7 +24,7 @@ export class GuestCommunicator extends Communicator {
 
   subscribe(topic: MessageTopic, handler: Function, scope?: MessageScope) {
     let _topic = this._getScopedTopic(topic, scope);
-    amplify.subscribe(_topic, handler);
+    Amplify.subscribe(_topic, handler);
   }
 
 }
