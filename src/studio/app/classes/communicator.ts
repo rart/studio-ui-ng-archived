@@ -78,7 +78,10 @@ export abstract class Communicator {
     let message = new Message(topic, data, scope);
     this._targets.forEach(function (target) {
       // TODO need to determine where to get the origin
-      target.contentWindow.postMessage(message, '*');
+      if (!target.postMessage) {
+        target = target.contentWindow;
+      }
+      target.postMessage(message, '*');
     });
   }
 
