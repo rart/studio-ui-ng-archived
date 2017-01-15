@@ -1,0 +1,31 @@
+<ul class="ui studio-tree">
+  <li [class.is-leaf]="item.isLeaf()" *ngFor="let item of items">
+    <div class="item-line">
+      <div *ngIf="enableSelection" class="ui checkbox">
+        <input type="checkbox"><label></label>
+      </div>
+      <button *ngIf="!item.isLeaf()" (click)="toggle(item)" class="item-toggler">
+        <i [class.ion-ios-arrow-right]="!item.isLeaf() && !isExpanded(item)"
+           [class.ion-ios-arrow-down]="!item.isLeaf() && isExpanded(item)"></i>
+        <!--<i [ngClass]="{
+           'folder outline icon': !item.isLeaf() && !isExpanded(item),
+           'folder open outline icon': !item.isLeaf() && isExpanded(item)
+        }"></i>-->
+      </button>
+      <div class="button-placeholder" *ngIf="item.isLeaf()"></div>
+      <a class="highlight-target" [title]="item.label" (click)="onItemClicked(item)">
+        <i class="item-icon"
+           *ngIf="showIcons"
+           [class]="itemIconClassGenerator(item)"></i>
+        <span class="label">{{item.label}}</span>
+        <button #btn class="item-menu-trigger" (click)="onItemOptionsClicked($event, btn, item)"><i class="ion-ios-more"></i></button>
+      </a>
+    </div>
+    <studio-tree *ngIf="isExpanded(item)"
+          [items]="item.children"
+          [itemIconClassGenerator]="itemIconClassGenerator"
+          [enableSelection]="enableSelection"
+          (itemExpanded)="onItemExpanded($event)"
+          (itemClicked)="onItemClicked($event)"></studio-tree>
+  </li>
+</ul>

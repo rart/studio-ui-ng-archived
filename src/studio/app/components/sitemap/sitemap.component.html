@@ -1,0 +1,13 @@
+<div class="ui studio-sitemap">
+  <menu class="ui center">
+    <button class="ui basic button compressed" (click)="toggleSelection()">Select Items</button>
+    <button class="ui basic button compressed" (click)="createPage()">Create Page</button>
+  </menu>
+  <studio-tree
+    *ngIf="items"
+    [items]="items"
+    [itemIconClassGenerator]="itemIconClassGenerator"
+    [enableSelection]="enableSelection"
+    (itemClicked)="onPageClicked($event)">
+  </studio-tree>
+</div>

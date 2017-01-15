@@ -1,0 +1,7 @@
+.studio-tab {
+  border-top-style: none;
+  display: none;
+  &.active {
+    display: block;
+  }
+}

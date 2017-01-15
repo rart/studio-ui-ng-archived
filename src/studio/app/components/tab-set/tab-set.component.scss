@@ -1,0 +1,35 @@
+@import "../../config/settings";
+
+.studio-tab-set {
+  nav {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #c8c8c8;
+    > a {
+      cursor: pointer;
+      display: block;
+      padding: 5px 0;
+      margin-right: 2px;
+      margin-bottom: 2px;
+      text-align: center;
+      flex: 33.333333333%;
+      font-size: $font-size-sm;
+      background-color: #d1d1d1;
+      &.active {
+        color: #000;
+        margin-bottom: -1px;
+        padding-bottom: 2px;
+        background-color: #fff;
+        border: 1px solid #c8c8c8;
+        border-bottom-color: #ffffff;
+      }
+      &:first-child {
+        border-left: none;
+      }
+      &:last-child {
+        margin-right: 0;
+        border-right: none;
+      }
+    }
+  }
+}

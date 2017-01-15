@@ -1,0 +1,91 @@
+@import "../../config/_settings";
+
+.studio-preview {
+  height: 100%;
+}
+
+.preview-frame {
+  top: 50px;
+  //top: 85px;
+  left: 0px;
+  right: $preview-panes-width;;
+  bottom: 60px;
+  position: absolute;
+  @media (min-width: map-get($grid-breakpoints, 'xl')) {
+    right: $preview-panes-width-xl;
+  }
+  > iframe {
+    width: 100%;
+    height:100%;
+    border: none;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.property-pane {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #c8c8c8;
+  .pane-title {
+    margin: 0;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 10px;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: $font-size-base;
+  }
+  .pane-bd {
+    padding: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .property-pane {
+    header {
+      background: #f2f2f2;
+    }
+  }
+}
+
+.preview-tools {
+  top: 0;
+  right: 0;
+  width: $preview-panes-width;
+  overflow: hidden;
+  bottom: 60px;
+  background: #fff;
+  position: absolute;
+  border-left: 1px solid $body-bg;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: map-get($grid-breakpoints, 'xl')) {
+    width: $preview-panes-width-xl;
+  }
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  > .title,
+  > .content.active {
+    border-bottom: 1px solid #c8c8c8;
+  }
+  > .title {
+    &.active,
+    &:last-child,
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+  > .content {
+    flex-grow: 1;
+    position: relative;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

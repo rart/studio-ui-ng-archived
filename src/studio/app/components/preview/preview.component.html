@@ -1,0 +1,49 @@
+<div class="studio-preview">
+
+  <studio-address-bar
+    [page]="page"
+    [site]="site"
+    (changeSite)="changeSite($event)"
+    (reload)="reload()"
+    (back)="back()"
+    (forward)="forward()"
+    (navigate)="urlRequested($event)">
+  </studio-address-bar>
+
+  <div class="ui preview-tools accordion">
+
+    <header class="title active">
+      <i class="dropdown icon"></i> Site
+    </header>
+    <studio-tab-set class="ui content active">
+      <studio-tab title="Sitemap">
+        <studio-sitemap
+          (navigate)="urlRequested($event)"></studio-sitemap>
+      </studio-tab>
+      <studio-tab title="Resources">
+        <studio-resource-explorer></studio-resource-explorer>
+      </studio-tab>
+      <studio-tab title="Properties">
+        <studio-property-explorer></studio-property-explorer>
+      </studio-tab>
+    </studio-tab-set>
+
+    <header class="title active">
+      <i class="dropdown icon"></i> Page
+    </header>
+    <div class="ui content active">
+      <p>There are many breeds of dogs. Each breed varies in size
+        and temperament. Owners often select a breed of dog that
+        they find to be compatible with their own lifestyle and
+        desires from a companion.</p>
+    </div>
+
+  </div>
+
+  <section class="preview-frame">
+    <iframe class="active" id="previewFrame" [src]="url | safeUrl"></iframe>
+  </section>
+
+  <studio-context-bar></studio-context-bar>
+
+</div>

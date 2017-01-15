@@ -1,0 +1,66 @@
+{
+  "project": {
+    "version": "1.0.0-beta.24",
+    "name": "studio-ui"
+  },
+  "apps": [
+    {
+      "root": "src/studio",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "fixtures",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "studio",
+      "mobile": false,
+      "styles": [
+        "../../node_modules/semantic-ui-css/semantic.css",
+        "app/styles.scss"
+      ],
+      "scripts": [
+        "../../node_modules/jquery/dist/jquery.js",
+        "../../node_modules/semantic-ui-css/semantic.js"
+      ],
+      "environments": {
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [
+  ],
+  "packages": [
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

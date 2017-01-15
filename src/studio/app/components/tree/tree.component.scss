@@ -1,0 +1,59 @@
+.studio-tree {
+  &, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li ul {
+    list-style: none;
+    padding-left: 25px;
+  }
+  .button-placeholder {
+    width: 20px;
+  }
+  .item-line {
+    display: flex;
+  }
+  .item-toggler {
+    width: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+  .item-menu-trigger {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    visibility: hidden;
+  }
+  .highlight-target {
+    flex-grow: 1;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    padding-right: 30px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    &:hover {
+      background: #f2f2f2;
+      .item-menu-trigger {
+        visibility: visible;
+      }
+    }
+    .item-icon {
+      top: 2px;
+      position: relative;
+    }
+    .label {
+      line-height: 24px;
+    }
+  }
+  .checkbox {
+    top: 4px;
+    label {
+      padding-left: 0;
+    }
+  }
+}

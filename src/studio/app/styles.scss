@@ -1,0 +1,38 @@
+@import "config/settings";
+
+body {
+  background: $body-bg;
+}
+
+button {
+  border: 0;
+  background: none;
+  &, &:focus {
+    outline: none;
+  }
+  &.simple {
+    border-radius: 5px;
+    &:hover {
+      background: $gray-lighter;
+    }
+    &:active {
+      background: darken($gray-lighter, 10%);
+    }
+  }
+  &.button.compressed {
+    padding: .3em 1em;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.preview-tools {
+  .studio-tab-set {
+    top: 0;
+    bottom: 0;
+    position: relative;
+    display: block !important;
+  }
+}

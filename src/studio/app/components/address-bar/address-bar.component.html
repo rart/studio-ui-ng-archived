@@ -1,0 +1,37 @@
+<div class="ui address-bar">
+  <section class="controls">
+    <button (click)="backClicked()" class="control back-button simple"><i class="ion-ios-arrow-left"></i></button>
+    <button (click)="forwardClicked()" class="control forward-button simple"><i class="ion-ios-arrow-right"></i></button>
+    <button (click)="reloadClicked()" class="control refresh-button simple"><i class="ion-ios-refresh-empty"></i></button>
+    <div class="input-skin ui search">
+      <div id="addressbarSiteSelector" class="ui inline dropdown site-display" *ngIf="site && sites">
+        <div class="text" [title]="site.name">
+          <img *ngIf="site.icon" [src]="site.icon" class="site-icon"> {{site.name}}
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" *ngFor="let s of sites | async" (click)="siteChanged(s)">
+            <img *ngIf="s.icon" [src]="s.icon" class="site-icon"> {{s.name}}
+          </div>
+        </div>
+      </div>
+      <input #urlBox type="text" id="address"
+             placeholder="index.html"
+             class="address-input ui search prompt"
+             [(ngModel)]="page"
+             (keyup.enter)="urlRequested(urlBox.value)" />
+      <button (click)="showSiteMapClicked()" class="control sitemap-button"><i class="ion-ios-arrow-down" title="Open Sitemap"></i></button>
+    </div>
+    <button (click)="shareClicked()" class="control share-button simple"><i class="ion-ios-upload-outline" title="Share"></i></button>
+    <button (click)="newTabClicked()" class="control new-tab-button simple"><i class="ion-ios-plus-empty" title="New Tab"></i></button>
+  </section>
+  <nav class="tab-bar">
+    <a class="active">Sit Sollicitudin Nullam Cursus Fermentum <button>&times;</button></a>
+    <a>Tristique Fringilla Aenean Condimentum Vulputate <button>&times;</button></a>
+    <a>Commodo Tellus Euismod Etiam Sit <button>&times;</button></a>
+    <a>Pellentesque Risus Fringilla Aenean Purus <button>&times;</button></a>
+    <a>Tab 5 Sit Sollicitudin Nullam Cursus Fermentum <button>&times;</button></a>
+    <a>Euismod Condimentum Etiam Consectetur Vehicula <button>&times;</button></a>
+    <a>Risus Porta Ipsum Lorem Malesuada <button>&times;</button></a>
+  </nav>
+</div>
