@@ -30,5 +30,13 @@
     "description": null,
     "status": null,
     "liveUrl": "https://blackrockdigital.github.io/startbootstrap-grayscale/"
+  },
+  {
+    "id": 25,
+    "siteId": "empty",
+    "name": "Empty",
+    "description": null,
+    "status": null,
+    "liveUrl": ""
   }
 ]
