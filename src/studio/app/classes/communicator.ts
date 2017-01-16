@@ -1,6 +1,5 @@
 
 export enum MessageTopic {
-  ContentItemClicked,
   ALL,
   GUEST_CHECK_IN,
   START_ICE,
@@ -29,7 +28,7 @@ export abstract class Communicator {
   protected _origins: Array<any> = [];
 
   constructor () {
-    window.addEventListener("message", this._onMessage.bind(this), false);
+    window.addEventListener("message", this.onMessage.bind(this), false);
   }
 
   /**
@@ -37,15 +36,15 @@ export abstract class Communicator {
    * @param message: Message
    * @private
    */
-  protected abstract _processReceivedMessage(message: Message);
+  protected abstract processReceivedMessage(message: Message);
 
   abstract subscribe(topic: MessageTopic, handler: Function, scope?: MessageScope);
 
-  private _onMessage(event) {
+  private onMessage(event) {
 
     let {data, origin, source} = event;
     if (this.originAllowed(origin)) {
-      this._processReceivedMessage(data);
+      this.processReceivedMessage(data);
     } else {
       console.log('Communicator: Message received from a disallowed origin.');
     }

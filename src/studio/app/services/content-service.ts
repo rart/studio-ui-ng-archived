@@ -12,9 +12,10 @@ import {V1ApiAdapter} from "../classes/v1-api-adapter";
 export class ContentService {
 
   private adapter: ApiAdapter;
+  private sitesSubject:BehaviorSubject<Site[]> =
+    new BehaviorSubject<Site[]>([])
 
-  sites: BehaviorSubject<Site[]> =
-    new BehaviorSubject<Site[]>([]);
+  sites: Observable<Site[]> = this.sitesSubject.asObservable();
 
   /*siteItems: BehaviorSubject<ContentItem[]> =
    new BehaviorSubject<ContentItem[]>([]);*/
@@ -25,10 +26,11 @@ export class ContentService {
 
   loadSites(): void {
     this.getSites()
-      .subscribe(sites => this.sites.next(sites));
+      .subscribe(sites => this.sitesSubject.next(sites));
   }
 
   getSites(): Observable<any> {
+
     let path = environment.urlGetSites;
     let result = this.http
       .get(`${environment.urlAPI}${path}`)
@@ -37,10 +39,8 @@ export class ContentService {
         return this.adapter.getSite(object);
       }));
 
-    result.subscribe(sites =>
-      this.sites.next(sites));
-
     return result;
+
   }
 
   getSiteTree(site: string, path: string, depth: number): void {

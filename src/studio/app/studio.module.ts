@@ -20,6 +20,8 @@ import { ContentService } from "./services/content-service";
 import { StudioRoutingModule } from "./studio-routing.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
+import {RouteReuseStrategy} from "@angular/router";
+import {StudioRouteReuseStrategy} from "./classes/studio-route-reuse-strategy";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,11 @@ import { LoginComponent } from './components/login/login.component';
     HttpModule,
     StudioRoutingModule
   ],
-  providers: [CommunicationService, ContentService],
+  providers: [
+    CommunicationService,
+    ContentService,
+    { provide: RouteReuseStrategy, useClass: StudioRouteReuseStrategy }
+  ],
   bootstrap: [StudioComponent]
 })
 export class StudioModule {

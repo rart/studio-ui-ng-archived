@@ -8,7 +8,7 @@ export class GuestCommunicator extends Communicator {
     super();
   }
 
-  protected _processReceivedMessage(data) {
+  protected processReceivedMessage(data) {
 
     let scopedTopic = this._getScopedTopic(data.topic, data.scope);
 

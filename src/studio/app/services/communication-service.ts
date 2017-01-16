@@ -1,39 +1,44 @@
 
-import {Injectable, EventEmitter} from '@angular/core';
+import {Subject} from "rxjs";
+import {Injectable} from '@angular/core';
 import {Communicator, Message, MessageTopic, MessageScope} from '../classes/communicator';
 
+@Injectable()
+export class CommunicationService extends Communicator {
 
-@Injectable() export class CommunicationService extends Communicator {
+  private messages: Subject<Message>;
 
-    private _emitter: EventEmitter<Message>;
+  constructor() {
+    super();
+    this.messages = new Subject<Message>();
+  }
 
-    constructor () {
-        super();
-        this._emitter = new EventEmitter<any>();
+  protected processReceivedMessage(message) {
+    this.messages.next(message);
+  }
+
+  subscribe(generatorOrNext) {
+    return this.messages.subscribe(generatorOrNext);
+  }
+
+  unsubscribe() {
+    this.messages.unsubscribe();
+  }
+
+  publish(topic: MessageTopic, data: any = null, scope: MessageScope = MessageScope.Broadcast) {
+    let message = new Message(topic, data, scope);
+    switch (message.scope) {
+      case MessageScope.Local:
+        this.messages.next(message);
+        break;
+      case MessageScope.External:
+        super.publish(topic, data, scope);
+        break;
+      case MessageScope.Broadcast:
+        this.messages.next(message);
+        super.publish(topic, data, scope);
+        break;
     }
-
-    protected _processReceivedMessage(message) {
-      this._emitter.emit(message);
-    }
-
-    subscribe(generatorOrNext) {
-        return this._emitter.subscribe(generatorOrNext);
-    }
-
-    publish(topic:MessageTopic, data:any = null, scope:MessageScope = MessageScope.Broadcast) {
-        let message = new Message(topic, data, scope);
-        switch (message.scope) {
-            case MessageScope.Local:
-                this._emitter.emit(message);
-                break;
-            case MessageScope.External:
-                super.publish(topic, data, scope);
-                break;
-            case MessageScope.Broadcast:
-                this._emitter.emit(message);
-                super.publish(topic, data, scope);
-                break;
-        }
-    }
+  }
 
 }

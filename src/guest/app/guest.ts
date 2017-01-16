@@ -22,6 +22,8 @@ export function crafterStudioGuestBootstrap() {
   communicator.addOrigin(origin);
   communicator.addTarget(window.parent);
 
+  // Notify Studio of successful website load...
+  console.debug(`Guest Loaded @ ${window.location.href}`);
   communicator.publish(MessageTopic.GUEST_CHECK_IN, {
     location: window.location.href,
     url: window.location.href.replace(window.location.origin, '')
@@ -38,7 +40,5 @@ export function crafterStudioGuestBootstrap() {
   communicator.subscribe(MessageTopic.GUEST_NAV_REQUEST, function (message) {
     window.location.href = message;
   });
-
-  console.debug(`${window.location.href} Loaded On Guest`);
 
 }

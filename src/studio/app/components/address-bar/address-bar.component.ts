@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Site} from "../../classes/site";
 import {ContentService} from "../../services/content-service";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 declare var $: any;
 
@@ -12,7 +12,8 @@ declare var $: any;
 })
 export class AddressBarComponent implements OnInit {
 
-  private sites: BehaviorSubject<Site[]>;   // Site roster
+  private sites: Observable<Site[]>;   // Site roster
+
   @Input() site: Site;      // The active site
   @Input() page: string;    // The active page
 
@@ -24,7 +25,9 @@ export class AddressBarComponent implements OnInit {
 
   constructor(
     private contentService: ContentService
-  ) {}
+  ) {
+    // this.sites = this.contentService.sites;
+  }
 
   ngOnInit() {
     this.sites = this.contentService.sites;
@@ -40,7 +43,7 @@ export class AddressBarComponent implements OnInit {
         .dropdown('destroy')
         .dropdown({ duration: 0 });
 
-      let $input = $('.input-skin:first')
+      let $input = $('.input-skin:first');
 
       $input
         .search('destroy');
@@ -82,7 +85,6 @@ export class AddressBarComponent implements OnInit {
   siteChanged(site) {
     if (site.nickname !== this.site.nickname){
       this.changeSite.emit(site);
-      this.initSemantic();
     }
   }
 
